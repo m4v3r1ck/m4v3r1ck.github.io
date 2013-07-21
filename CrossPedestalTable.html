@@ -36,6 +36,70 @@
 <p>An innovative solid wood base and tempered glass table top are combined to produce Matthew Hilton’s stunning Cross Pedestal Table. The asymmetrical base made of solid alder wood, is fitted with rubber connectors on which the glass table top sits. This beautiful design would complement both modern and traditional interiors.</p>
 
 <h2>The Model</h2>
+<img src="./images/CrossPedestalTable9.png" style="float: center">
+
+<h3>The Base</h3>
+With bezier was realized the profile curve of the table.
+<img src="./images/CrossPedestalTable1.png" style="float: center">
+
+<p>The model of the base product was copied and rotated 90 degrees obtaining:</p>
+<img src="./images/CrossPedestalTable3.png" style="float: center">
+<p>The function creates the base in a parametric way than the thickness of the wood:</p>
+ <div id="main-content">
+<pre><code>/* Funzione che crea il telaio in modo parametrico rispetto allo spessore del legno */
+  var telaio = function(spess) {
+  ...
+  ...
+  ...
+  var telaio1 = TRANSLATE([0,1,2])([-3.364,-spess/2,-1.586])(STRUCT([laterali,supA,supB]));
+  var telaio2 = ROTATE([0,1])(PI/2)(telaio1);
+
+  var telaioTot = COLOR(marroneChiaro)(STRUCT([telaio1,telaio2]));
+
+  return telaioTot;
+}</code></pre>
+</div>
+
+<h3>The Glass</h3>
+<p>The glass was constructed using as main function 'arc' and EXTRUDE.
+
+</p>
+<img src="./images/CrossPedestalTable5.png" style="float: center">
+ <div id="main-content">
+        <pre><code>
+/* Arco di circonferenza bidimensionale parametrico rispetto a due raggi 
+  r = raggio minore, R = raggio maggiore, alpha = arco di circonferenza */
+function arc (alpha, r, R){
+  var domain = DOMAIN([[0,alpha],[r,R]])([128,1]);
+
+  var mapping = function(v) {
+  var a = v[0];
+  var r = v[1];
+
+  return [r*COS(a), r*SIN(a)];
+  }
+  var model = MAP(mapping)(domain);
+
+  return model;
+}</code></pre>
+</div>
+ <div id="main-content">
+        <pre><code>
+/* Vetro circolare di raggio r e spessore s */
+var vetro = function(r,s) {
+  var vetro = COLOR(vitro)(TRANSLATE([2])([3.274])(EXTRUDE([s])(arc(2*PI,0,r))));
+  return vetro;
+}
+</code></pre>
+</div>
+
+
+
+
+<div style="text-align:center">
+      <a href="./CrossPedestalTable_Code.html">Show Code</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+      <a href="./javascripts/js/CrossPedestalTable_view.html" target="_blank">Show Model</a>
+</div>
 
         </section>
 

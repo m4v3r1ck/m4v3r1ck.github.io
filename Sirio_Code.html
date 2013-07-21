@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>plasm-boilerplate</title>
-  <link rel="stylesheet" href="./build/build.css">
-</head>
-<body>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
 
-  <section>
-    <div id="plasm"></div>
-  </section>
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-  <script src="./build/build.js"></script>
-  <script src="../js/jquery-1.10.1.js"></script>
-  <script>
-    var PLASM = require('cvdlab-plasm-fun');
-    PLASM('plasm').globalize();
-  </script>
+    <title>Computational Graphic by Federico Mione</title>
+  </head>
 
-   <script>
-$(document).ready(function(){
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Models of International Design</h1>
+        <h2>Computational Graphics - Final Project by Federico Mione</h2>
+        <a href="https://github.com/m4v3r1ck" class="button"><small>Follow me on</small>GitHub</a>
+      </div>
+    </header>
 
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Sirio</h1>
+
+<h2>The Code</h2>
+  <div id="main-content">
+        <pre><code>
 /***********************************************************************************
 *
 *                 Giorgetto Giugiaro - Telefono SIP
@@ -30,9 +43,9 @@ $(document).ready(function(){
 ************************************************************************************/
 
 /* dichiarazione dei domini */
-var domain = INTERVALS(1)(12);
-var domain2d = PROD1x1([INTERVALS(1)(12),INTERVALS(1)(12)]);
-var domain2dcorn = PROD1x1([INTERVALS(1)(12),INTERVALS(1)(12)]);
+var domain = INTERVALS(1)(16);
+var domain2d = PROD1x1([INTERVALS(1)(16),INTERVALS(1)(16)]);
+var domain2dcorn = PROD1x1([INTERVALS(1)(32),INTERVALS(1)(32)]);
 
 
 /* definizione colori */
@@ -47,7 +60,7 @@ var white = [50,50,50];
 /* Arco di circonferenza bidimensionale parametrico rispetto a due raggi 
   r = raggio minore, R = raggio maggiore, alpha = arco di circonferenza */
 function arc (alpha, r, R){
-  var domainArc = DOMAIN([[0,alpha],[r,R]])([12,1]);
+  var domainArc = DOMAIN([[0,alpha],[r,R]])([16,1]);
   var mapping = function(v) {
   var a = v[0];
   var r = v[1];
@@ -60,7 +73,7 @@ function arc (alpha, r, R){
 }
 
 var sphere = function(r) {
-  var domain = DOMAIN([[0, PI], [0, 2*PI]])([12,12]);
+  var domain = DOMAIN([[0, PI], [0, 2*PI]])([16,16]);
 
   var mapping = function(v) {
     var a = v[0];
@@ -921,11 +934,44 @@ var model = function(i) {
   return result;
 }
 
-DRAW(model(1));
+        </code></pre>
 
 
-});
-</script>
+    </div>
 
-</body>
+
+        </section>
+
+        <aside id="sidebar">
+          <ul>
+            <li><a href="index.html">HOME</a></li><BR><BR>
+            <li>Designers</a><BR><BR>
+              <ul>
+                <li><a href="WarrenPlatner.html">Warren Platner</a>
+                  <ul>
+                    <li><a href="CoffeTable.html">Coffè Table</a>
+                  </ul>
+                </li>
+                <li><a href="MatthewHilton.html">Matthew Hilton</a>
+                  <ul>
+                  <li><a href="CrossPedestalTable.html">Cross Pedestal Table</a>
+                  </ul>
+                </li>
+                <li><a href="GiorgettoGiugiaro.html">Giorgetto Giugiaro</a>
+                  <ul>
+                    <li><a href="Sirio.html">Sirio</a>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+
+      <footer>
+        <center><span style="font-weight: bold;">Federico Mione - Final Project</span><br/></center>
+
+      </footer>
+  </body>
 </html>
