@@ -52,11 +52,80 @@
 <img src="./images/Sirio6.png" style="float: center"> 
 
 <h3>The Numbers</h3>
+<p>For the modeling of some numbers was used Bezier function (such as the number 8):</p>
+<center><img src="./images/Sirio7.png" style="float: center"> </center>
+<p>For the asterisk key has been used the function 'REPLICA' in conjunction with the function 'ROTATE' getting the result below:</p>
+<center><img src="./images/Sirio8.png" style="float: center"> </center>
 
+<div id="main-content">
+        <pre><code> /* Crea il tasto asterico */
+var asterisco = function(h) {
+
+  var line1 = TRANSLATE([0,2])([-1.114/2,h+0.01])(linea(0.195,1.114));
+  var aste = COLOR(grigio10)(STRUCT(REPLICA(3)([line1,ROTATE([0,1])(2*PI/3)])));
+
+  var tot = STRUCT([aste]);
+  return tot;
+}</code></pre>
+</div>
 <h3>The Keyboard</h3>
+<center><img src="./images/Sirio10.png" style="float: center"> </center>
+<p>The keyboard has been created through the 'console' that takes three inputs:<BR>
 
+    - h - height of the buttons,<BR>
+    - a - latitudinal distance between the buttons,<BR>
+    - b - longitudinal distance between the buttons.</p>
+<div id="main-content">
+        <pre><code> var console = function(h,a,b) {
+  var un = TRANSLATE([0,1])([-h-a,h/2+b/2+h+b])(ROTATE([0,1])(-PI/2)(uno(h)));
+  var du = TRANSLATE([1])([h/2+b/2+h+b])(due(h));
+  var tr = TRANSLATE([0,1])([h+a,h/2+b/2+h+b])(tre(h));
+  var quatt = TRANSLATE([0,1])([-h-a,h/2+b/2])(quattro(h));
+  var cin = TRANSLATE([1])([h/2+b/2])(cinque(h));
+  var se = TRANSLATE([0,1])([h+a,h/2+b/2])(sei(h));
+  var sett = TRANSLATE([0,1])([-h-a,-h/2-b/2])(sette(h));
+  var ott = TRANSLATE([1])([-h/2-b/2])(otto(h));
+  var nov = TRANSLATE([0,1])([h+a,-h/2-b/2])(nove(h));
+  var zer = TRANSLATE([1])([-h/2-b/2-h-b])(zero(h));
+  var ast = TRANSLATE([0,1])([-h-a,-h/2-b/2-h-b])(asterisco(h));
+  var canc = TRANSLATE([0,1])([h+a,-h/2-b/2-h-b])(cancelletto(h));
+
+  var tast_spec_rp = TRANSLATE([0,1])([h+a+8,-h/2-b/2])(rp(h));
+  var tast_spec_p =  TRANSLATE([0,1])([h+a+8,-h/2-b/2-h-b])(pii_but(h));
+  var logo = TRANSLATE([0,1,2])([-14,h/2+b/2+b+h/2,0.9])(SCALE([0,1])([0.25,0.25])(logo_sip(0.5)));
+  var tastiera = TRANSLATE([2])([-0.2])(STRUCT([cin,ott,du,zer,un,tr,quatt,se,sett,nov,ast,canc,tast_spec_rp,tast_spec_p]));
+  
+  var tot = STRUCT([tastiera])
+  return tot;
+}</code></pre>
+</div>
 <h3>The Chassis</h3>
+<img src="./images/Sirio15.png" style="float: center"> 
+<p>The Chassis has been obtained by the application of:</p>
+             <ul style="font-weight:bold;">
+        <li>1-Hermite for the profile curves constructed with Bezier;</li>
+        <li>2-Rods obtained by extruding circles;</li>
+        <li>3-Spheres, hemispheres or quarter-sphere;</li>
+        <li>3-CuboId.</li>
+      </ul>
+<div id="main-content">
+        <pre><code> var sphere = function(r) {
+  var domain = DOMAIN([[0, PI], [0, 2*PI]])([16,16]);
 
+  var mapping = function(v) {
+    var a = v[0];
+    var b = v[1];
+
+    var u = r*SIN(a)*COS(b);
+    var v = r*SIN(a)*SIN(b);
+    var w = r*COS(a);
+
+    return [u,v,w];
+  }
+  return MAP(mapping)(domain)
+}</code></pre>
+</div>
+<img src="./images/Sirio11.png" style="float: center"> 
 <h3>The Handset</h3>
 <p>The handset has been obtained by the application of Hermite for the profile curves constructed with Bezier.</p>
 <img src="./images/Sirio5.png" style="float: center"> 
